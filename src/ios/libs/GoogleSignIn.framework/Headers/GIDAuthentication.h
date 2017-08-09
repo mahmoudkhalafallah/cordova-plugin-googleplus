@@ -51,22 +51,19 @@ typedef void (^GIDAccessTokenHandler)(NSString *accessToken, NSError *error);
 // Gets a new authorizer for GTLService, GTMSessionFetcher, or GTMHTTPFetcher.
 - (id<GTMFetcherAuthorizationProtocol>)fetcherAuthorizer;
 
-// Get a valid access token and a valid ID token, refreshing them first if they have expired or are
-// about to expire.
+// Optionally refreshs the access token and the id token from the refresh token if the originals
+// have already expired or are about to expire.
 - (void)getTokensWithHandler:(GIDAuthenticationHandler)handler;
 
-// Refreshes the access token and the ID token using the refresh token.
+// Refreshes the access token and the id token with the refresh token.
 - (void)refreshTokensWithHandler:(GIDAuthenticationHandler)handler;
 
-// Gets the access token, which may be a new one from the refresh token if the original has already
-// expired or is about to expire. Deprecated: use |getTokensWithHandler:| to get access tokens
-// instead.
+// DEPRECATED: please call |getTokensWithHandler:| instead.
 - (void)getAccessTokenWithHandler:(GIDAccessTokenHandler)handler
-    DEPRECATED_MSG_ATTRIBUTE("Use |getTokensWithHandler:| instead.");
+    DEPRECATED_MSG_ATTRIBUTE("Please use |getTokensWithHandler:|.");
 
-// Refreshes the access token with the refresh token. Deprecated: Use |refreshTokensWithHandler:|
-// to refresh access tokens instead.
+// DEPRECATED: please call |refreshTokensWithHandler:| instead.
 - (void)refreshAccessTokenWithHandler:(GIDAccessTokenHandler)handler
-    DEPRECATED_MSG_ATTRIBUTE("Use |refreshTokensWithHandler:| instead.");
+    DEPRECATED_MSG_ATTRIBUTE("Please use |refreshTokensWithHandler:|.");
 
 @end
